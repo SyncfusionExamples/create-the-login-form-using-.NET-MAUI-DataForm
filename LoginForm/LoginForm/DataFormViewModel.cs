@@ -14,7 +14,7 @@
         }
 
         /// <summary>
-        /// Gets or sets the sign in model.
+        /// Gets or sets the login form model.
         /// </summary>
         public LoginFormModel LoginFormModel { get; set; }
     }

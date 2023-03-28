@@ -18,7 +18,7 @@
         private SfDataForm dataForm;
 
         /// <summary>
-        /// Holds the sign in button instance.
+        /// Holds the login button instance.
         /// </summary>
         private Button loginButton;
 
@@ -53,9 +53,9 @@
         }
 
         /// <summary>
-        /// Invokes on sign in button click.
+        /// Invokes on login button click.
         /// </summary>
-        /// <param name="sender">The sign in button.</param>
+        /// <param name="sender">The login button.</param>
         /// <param name="e">The event arguments.</param>
         private async void OnLoginButtonCliked(object sender, EventArgs e)
         {
