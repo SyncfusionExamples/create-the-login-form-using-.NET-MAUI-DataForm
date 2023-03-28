@@ -9,7 +9,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class SignInFormBehavior : Behavior<ContentPage>
+    public class LoginFormBehavior : Behavior<ContentPage>
     {
 
         /// <summary>
@@ -20,22 +20,22 @@
         /// <summary>
         /// Holds the sign in button instance.
         /// </summary>
-        private Button signInButton;
+        private Button loginButton;
 
         protected override void OnAttachedTo(ContentPage bindable)
         {
             base.OnAttachedTo(bindable);
-            this.dataForm = bindable.FindByName<SfDataForm>("signInForm");
+            this.dataForm = bindable.FindByName<SfDataForm>("loginForm");
             if (dataForm != null)
             {
                 this.dataForm.GenerateDataFormItem += this.OnGenerateDataFormItem;
             }
 
-            this.signInButton = bindable.FindByName<Button>("signInButton");
+            this.loginButton = bindable.FindByName<Button>("loginButton");
 
-            if (this.signInButton != null)
+            if (this.loginButton != null)
             {
-                this.signInButton.Clicked += OnSignInButtonCliked;
+                this.loginButton.Clicked += OnLoginButtonCliked;
             }
         }
 
@@ -46,7 +46,7 @@
         /// <param name="e">The event arguments.</param>
         private void OnGenerateDataFormItem(object sender, GenerateDataFormItemEventArgs e)
         {
-            if (e.DataFormItem != null && e.DataFormItem.FieldName == nameof(SignInFormModel.UserName) && e.DataFormItem is DataFormTextEditorItem textItem)
+            if (e.DataFormItem != null && e.DataFormItem.FieldName == nameof(LoginFormModel.UserName) && e.DataFormItem is DataFormTextEditorItem textItem)
             {
                 textItem.Keyboard = Keyboard.Email;
             }
@@ -57,7 +57,7 @@
         /// </summary>
         /// <param name="sender">The sign in button.</param>
         /// <param name="e">The event arguments.</param>
-        private async void OnSignInButtonCliked(object sender, EventArgs e)
+        private async void OnLoginButtonCliked(object sender, EventArgs e)
         {
             if(this.dataForm != null && App.Current?.MainPage != null)
             {
@@ -75,9 +75,9 @@
         protected override void OnDetachingFrom(ContentPage bindable)
         {
             base.OnDetachingFrom(bindable);
-            if (this.signInButton != null)
+            if (this.loginButton != null)
             {
-                this.signInButton.Clicked -= OnSignInButtonCliked;  
+                this.loginButton.Clicked -= OnLoginButtonCliked;  
             }
 
             if (this.dataForm != null)

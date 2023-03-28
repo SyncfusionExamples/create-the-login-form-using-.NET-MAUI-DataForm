@@ -10,12 +10,12 @@
         /// </summary>
         public DataFormViewModel()
         {
-            this.SignInFormModel = new SignInFormModel();
+            this.LoginFormModel = new LoginFormModel();
         }
 
         /// <summary>
         /// Gets or sets the sign in model.
         /// </summary>
-        public SignInFormModel SignInFormModel { get; set; }
+        public LoginFormModel LoginFormModel { get; set; }
     }
 }

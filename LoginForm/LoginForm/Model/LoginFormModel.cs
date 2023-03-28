@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LoginForm
 {
-    public class SignInFormModel
+    public class LoginFormModel
     {
         [Display(Prompt = "example@mail.com", Name = "Email")]
         [EmailAddress(ErrorMessage = "Enter your email - example@mail.com")]

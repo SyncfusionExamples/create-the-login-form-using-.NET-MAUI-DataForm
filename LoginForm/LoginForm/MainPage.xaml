@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:thickness ="clr-namespace:Microsoft.Maui;assembly=Microsoft.Maui"
-            xmlns:dataForm="http://schemas.syncfusion.com/maui"
+            xmlns:dataForm="clr-namespace:Syncfusion.Maui.DataForm;assembly=Syncfusion.Maui.DataForm"
              xmlns:local="clr-namespace:LoginForm"
              xmlns:system="clr-namespace:System;assembly=netstandard"
              x:Class="LoginForm.MainPage">
@@ -18,72 +18,69 @@
                 </Border.StrokeShape>
                 <Image Source="login.png" Grid.Row="0"  Grid.Column="0"  HorizontalOptions="Center"  Aspect="AspectFit"
                    />
-        </Border>
+            </Border>
             <Frame CornerRadius="10" Grid.Column="{OnIdiom Default=0, Desktop=1}"  BorderColor="White" HeightRequest="420" Background="White"
                   Grid.Row="{OnIdiom Default=1, Desktop=0}" 
                   WidthRequest="380" VerticalOptions="{OnIdiom Default=Start, Desktop=Center}"
                   Grid.ColumnSpan="{OnIdiom Default=2, Desktop=1}" 
                   Grid.RowSpan="{OnIdiom Default=1, Desktop=2}" >
                 <Grid IsClippedToBounds="True" HeightRequest="420" >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="90"/>
-                    <RowDefinition Height="{OnIdiom Default=180, Desktop=155}"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
-                </Grid.RowDefinitions>
-                <Grid.BindingContext>
-                    <local:DataFormViewModel/>
-                </Grid.BindingContext>
-                <Label   Padding="0,10,0,0" 
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="90"/>
+                        <RowDefinition Height="{OnIdiom Default=180, Desktop=155}"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <Grid.BindingContext>
+                        <local:DataFormViewModel/>
+                    </Grid.BindingContext>
+                    <Label   Padding="0,10,0,0" 
                        HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Start">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="Welcome back" FontSize="32"   FontAttributes="Bold"/>
-                            <Span Text="{x:Static system:Environment.NewLine}"/>
-                            <Span Text="Login to your account" FontSize="14"/>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Welcome back" FontSize="32"   FontAttributes="Bold"/>
+                                <Span Text="{x:Static system:Environment.NewLine}"/>
+                                <Span Text="Login to your account" FontSize="14"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
 
-                <dataForm:SfDataForm x:Name="signInForm" Grid.Row="1" DataObject="{Binding SignInFormModel}" 
-                                     LayoutType="TextInputLayout" 
+                    <dataForm:SfDataForm x:Name="loginForm"   LayoutType="TextInputLayout" 
+                    Grid.Row="1"  DataObject="{Binding LoginFormModel}" 
                                      ValidationMode="PropertyChanged"  >
-                    <dataForm:SfDataForm.TextInputLayoutSettings>
-                        <dataForm:TextInputLayoutSettings ShowHelperText="True"/>
-                    </dataForm:SfDataForm.TextInputLayoutSettings>
-                </dataForm:SfDataForm>
+                    </dataForm:SfDataForm>
 
-                <Grid ColumnDefinitions="0.5*,0.5*" Grid.Row="2" Padding="12,0,0,0"  VerticalOptions="Start">
-                    <HorizontalStackLayout VerticalOptions="Center" Padding="10,0,0,0" >
-                        <CheckBox Color="{StaticResource Primary}"/>
-                        <Label  Text="Remember me"  FontSize="12" VerticalOptions="Center" />
-                    </HorizontalStackLayout>
-                    <Label Text="Forgot password?" Grid.Column="1"  TextColor="{StaticResource Primary}" HorizontalTextAlignment="Center" Padding="10,0,0,0" FontSize="12"  VerticalOptions="Center" />
-                </Grid>
+                    <Grid ColumnDefinitions="0.5*,0.5*" Grid.Row="2" Padding="12,0,0,0"  VerticalOptions="Start">
+                        <HorizontalStackLayout VerticalOptions="Center" Padding="10,0,0,0" >
+                            <CheckBox Color="{StaticResource Primary}"/>
+                            <Label  Text="Remember me"  FontSize="12" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                        <Label Text="Forgot password?" Grid.Column="1"  TextColor="{StaticResource Primary}" HorizontalTextAlignment="Center" Padding="10,0,0,0" FontSize="12"  VerticalOptions="Center" />
+                    </Grid>
 
-                <Button Text="LOGIN" x:Name="signInButton" HeightRequest="40" VerticalOptions="End"
+                    <Button Text="LOGIN" x:Name="loginButton" HeightRequest="40" VerticalOptions="End"
                         HorizontalOptions="Fill" Margin="20,0,20,0" CornerRadius="10"
                         Padding="0"  FontAttributes="Bold"
                         Grid.Row="3" Background="{StaticResource Primary}"/>
 
 
-                <Label Grid.Row="4" Padding="0,12,0,0"
+                    <Label Grid.Row="4" Padding="0,12,0,0"
                        HorizontalOptions="Center"
                        HorizontalTextAlignment="Center"
                        FontSize="14">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="Don't have an account?   " />
-                            <Span Text="Sign Up" TextDecorations="Underline" TextColor="{StaticResource Primary}"/>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-            </Grid>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Don't have an account?   " />
+                                <Span Text="Sign Up" TextDecorations="Underline" TextColor="{StaticResource Primary}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
             </Frame>
         </Grid>
     </Border>
     <ContentPage.Behaviors>
-        <local:SignInFormBehavior/>
+        <local:LoginFormBehavior/>
     </ContentPage.Behaviors>
 </ContentPage>
