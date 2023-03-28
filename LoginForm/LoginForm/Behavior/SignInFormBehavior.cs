@@ -15,12 +15,12 @@
         /// <summary>
         /// Holds the data form object.
         /// </summary>
-        private SfDataForm? dataForm;
+        private SfDataForm dataForm;
 
         /// <summary>
         /// Holds the sign in button instance.
         /// </summary>
-        private Button? signInButton;
+        private Button signInButton;
 
         protected override void OnAttachedTo(ContentPage bindable)
         {
@@ -44,7 +44,7 @@
         /// </summary>
         /// <param name="sender">The data form.</param>
         /// <param name="e">The event arguments.</param>
-        private void OnGenerateDataFormItem(object? sender, GenerateDataFormItemEventArgs e)
+        private void OnGenerateDataFormItem(object sender, GenerateDataFormItemEventArgs e)
         {
             if (e.DataFormItem != null && e.DataFormItem.FieldName == nameof(SignInFormModel.UserName) && e.DataFormItem is DataFormTextEditorItem textItem)
             {
@@ -57,7 +57,7 @@
         /// </summary>
         /// <param name="sender">The sign in button.</param>
         /// <param name="e">The event arguments.</param>
-        private async void OnSignInButtonCliked(object? sender, EventArgs e)
+        private async void OnSignInButtonCliked(object sender, EventArgs e)
         {
             if(this.dataForm != null && App.Current?.MainPage != null)
             {
