@@ -26,10 +26,7 @@
         {
             base.OnAttachedTo(bindable);
             this.dataForm = bindable.FindByName<SfDataForm>("loginForm");
-            if (dataForm != null)
-            {
-                this.dataForm.GenerateDataFormItem += this.OnGenerateDataFormItem;
-            }
+            this.dataForm.GenerateDataFormItem += this.OnGenerateDataFormItem;
 
             this.loginButton = bindable.FindByName<Button>("loginButton");
 
@@ -46,7 +43,7 @@
         /// <param name="e">The event arguments.</param>
         private void OnGenerateDataFormItem(object sender, GenerateDataFormItemEventArgs e)
         {
-            if (e.DataFormItem != null && e.DataFormItem.FieldName == nameof(LoginFormModel.UserName) && e.DataFormItem is DataFormTextEditorItem textItem)
+            if (e.DataFormItem != null && e.DataFormItem.FieldName == nameof(LoginFormModel.Email) && e.DataFormItem is DataFormTextEditorItem textItem)
             {
                 textItem.Keyboard = Keyboard.Email;
             }
@@ -59,9 +56,9 @@
         /// <param name="e">The event arguments.</param>
         private async void OnLoginButtonCliked(object sender, EventArgs e)
         {
-            if(this.dataForm != null && App.Current?.MainPage != null)
+            if (this.dataForm != null && App.Current?.MainPage != null)
             {
-                if(this.dataForm.Validate())
+                if (this.dataForm.Validate())
                 {
                     await App.Current.MainPage.DisplayAlert("", "Signed in successfully", "OK");
                 }
@@ -77,7 +74,7 @@
             base.OnDetachingFrom(bindable);
             if (this.loginButton != null)
             {
-                this.loginButton.Clicked -= OnLoginButtonCliked;  
+                this.loginButton.Clicked -= OnLoginButtonCliked;
             }
 
             if (this.dataForm != null)

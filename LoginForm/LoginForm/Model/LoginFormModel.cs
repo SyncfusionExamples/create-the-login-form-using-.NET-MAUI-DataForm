@@ -12,7 +12,7 @@ namespace LoginForm
     {
         [Display(Prompt = "example@mail.com", Name = "Email")]
         [EmailAddress(ErrorMessage = "Enter your email - example@mail.com")]
-        public string UserName { get; set; }
+        public string Email { get; set; }
 
         [Display(Name = "Password")]
         [DataType(DataType.Password)]
