@@ -9,55 +9,55 @@
     <ContentPage.BindingContext>
         <local:DataFormViewModel/>
     </ContentPage.BindingContext>
-        <Grid ColumnDefinitions="0.5*, 0.5*" RowDefinitions="0.3*, 0.7*" 
-              Background="{OnIdiom Default=Transparent, Desktop=#83E9EE}">
-            <Border  Grid.ColumnSpan="{OnIdiom Default=2, Desktop=1}" Stroke="Transparent"  Background="{OnIdiom Phone=#83E9EE,Desktop=Transparent}" 
-                    Grid.RowSpan="{OnIdiom Default=1, Desktop=2}">
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="0,0,100,100"/>
-                </Border.StrokeShape>
+    <Grid ColumnDefinitions="0.5*, 0.5*" RowDefinitions="0.3*, 0.7*" 
+              Background="{OnPlatform Default=Transparent, WinUI=#83E9EE,MacCatalyst=#83E9EE}">
+        <Border  Grid.ColumnSpan="{OnPlatform Default=2, WinUI=1, MacCatalyst=1}" Stroke="Transparent"  Background="{OnPlatform Default=#83E9EE,WinUI=Transparent, MacCatalyst=Transparent}" 
+                    Grid.RowSpan="{OnPlatform Default=1, WinUI=2, MacCatalyst=2}">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="0,0,100,100"/>
+            </Border.StrokeShape>
             <Image Source="login.png" Grid.Row="0"  Grid.Column="0"  HorizontalOptions="Center"  Aspect="AspectFit"/>
-            </Border>
-            
-            <Frame CornerRadius="10" Grid.Column="{OnIdiom Default=0, Desktop=1}"  BorderColor="White" HeightRequest="420" Background="White"
-                  Grid.Row="{OnIdiom Default=1, Desktop=0}" 
-                  WidthRequest="380" VerticalOptions="{OnIdiom Default=Start, Desktop=Center}"
-                  Grid.ColumnSpan="{OnIdiom Default=2, Desktop=1}" 
-                  Grid.RowSpan="{OnIdiom Default=1, Desktop=2}" >
-                <Grid IsClippedToBounds="True" HeightRequest="420" >
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="90"/>
-                        <RowDefinition Height="{OnIdiom Default=180, Desktop=155}"/>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="40"/>
-                    </Grid.RowDefinitions>
-                    <Grid.BindingContext>
-                        <local:DataFormViewModel/>
-                    </Grid.BindingContext>
-                    <Label   Padding="0,10,0,0" 
-                       HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Start">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="Welcome back" FontSize="32"   FontAttributes="Bold"/>
-                                <Span Text="{x:Static system:Environment.NewLine}"/>
-                                <Span Text="Login to your account" FontSize="14"/>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
+        </Border>
 
-                    <dataForm:SfDataForm x:Name="loginForm"   LayoutType="TextInputLayout" 
+        <Frame CornerRadius="10" Grid.Column="{OnPlatform Default=0, WinUI=1, MacCatalyst=1}"  BorderColor="White" HeightRequest="420" Background="White"
+                  Grid.Row="{OnPlatform Default=1, WinUI=0,MacCatalyst=0}" 
+                  WidthRequest="380" VerticalOptions="{OnPlatform Default=Start, WinUI=Center , MacCatalyst=Center}"
+                  Grid.ColumnSpan="{OnPlatform Default=2, WinUI=1, MacCatalyst=1}" 
+                  Grid.RowSpan="{OnPlatform Default=1, WinUI=2, MacCatalyst=2}" >
+            <Grid IsClippedToBounds="True" HeightRequest="420" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="90"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid.BindingContext>
+                    <local:DataFormViewModel/>
+                </Grid.BindingContext>
+                <Label   Padding="0,10,0,0"  
+                       HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Start">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Welcome back" FontSize="32"   FontAttributes="Bold"/>
+                            <Span Text="{x:Static system:Environment.NewLine}"/>
+                            <Span Text="Login to your account" FontSize="14"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <dataForm:SfDataForm MinimumHeightRequest="{OnPlatform Default=160, WinUI=155, MacCatalyst=155}" x:Name="loginForm" VerticalOptions="Start" LayoutType="TextInputLayout" 
                     Grid.Row="1"  DataObject="{Binding LoginFormModel}" 
                                      ValidationMode="PropertyChanged"  >
-                    </dataForm:SfDataForm>
+                </dataForm:SfDataForm>
 
-                    <Grid ColumnDefinitions="0.5*,0.5*" Grid.Row="2" Padding="12,0,0,0"  VerticalOptions="Start">
-                        <HorizontalStackLayout VerticalOptions="Center" Padding="10,0,0,0" >
-                            <CheckBox Color="{StaticResource Primary}"/>
-                            <Label  Text="Remember me"  FontSize="12" VerticalOptions="Center" />
-                        </HorizontalStackLayout>
-                        <Label Text="Forgot password?" Grid.Column="1"  TextColor="{StaticResource Primary}" HorizontalTextAlignment="Center" Padding="10,0,0,0" FontSize="12"  VerticalOptions="Center" />
-                    </Grid>
+                <Grid ColumnDefinitions="0.5*,0.5*" Grid.Row="2" Padding="12,0,0,0"  VerticalOptions="Start">
+                    <HorizontalStackLayout VerticalOptions="Center" Padding="10,0,0,0" >
+                        <CheckBox Color="{StaticResource Primary}"/>
+                        <Label  Text="Remember me"  FontSize="12" VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                    <Label Text="Forgot password?" Grid.Column="1"  TextColor="{StaticResource Primary}" HorizontalTextAlignment="Center" Padding="10,0,0,0" FontSize="12"  VerticalOptions="Center" />
+                </Grid>
 
                 <Button Text="LOGIN" x:Name="loginButton" HeightRequest="40" VerticalOptions="End"
                         HorizontalOptions="Fill" Margin="20,0,20,0" CornerRadius="10"
@@ -65,20 +65,20 @@
                         Grid.Row="3" Background="{StaticResource Primary}"/>
 
 
-                    <Label Grid.Row="4" Padding="0,12,0,0"
+                <Label Grid.Row="4" Padding="0,12,0,0"
                        HorizontalOptions="Center"
                        HorizontalTextAlignment="Center"
                        FontSize="14">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="Don't have an account?   " />
-                                <Span Text="Sign Up" TextDecorations="Underline" TextColor="{StaticResource Primary}"/>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                </Grid>
-            </Frame>
-        </Grid>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Don't have an account?   " />
+                            <Span Text="Sign Up" TextDecorations="Underline" TextColor="{StaticResource Primary}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </Grid>
+        </Frame>
+    </Grid>
     <ContentPage.Behaviors>
         <local:LoginFormBehavior/>
     </ContentPage.Behaviors>
