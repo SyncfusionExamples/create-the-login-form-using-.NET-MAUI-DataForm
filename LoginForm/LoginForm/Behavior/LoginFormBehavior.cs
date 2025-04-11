@@ -15,12 +15,12 @@
         /// <summary>
         /// Holds the data form object.
         /// </summary>
-        private SfDataForm dataForm;
+        private SfDataForm? dataForm;
 
         /// <summary>
         /// Holds the login button instance.
         /// </summary>
-        private Button loginButton;
+        private Button? loginButton;
 
         protected override void OnAttachedTo(ContentPage bindable)
         {
@@ -41,7 +41,7 @@
         /// </summary>
         /// <param name="sender">The data form.</param>
         /// <param name="e">The event arguments.</param>
-        private void OnGenerateDataFormItem(object sender, GenerateDataFormItemEventArgs e)
+        private void OnGenerateDataFormItem(object? sender, GenerateDataFormItemEventArgs e)
         {
             if (e.DataFormItem != null && e.DataFormItem.FieldName == nameof(LoginFormModel.Email) && e.DataFormItem is DataFormTextEditorItem textItem)
             {
@@ -54,17 +54,17 @@
         /// </summary>
         /// <param name="sender">The login button.</param>
         /// <param name="e">The event arguments.</param>
-        private async void OnLoginButtonCliked(object sender, EventArgs e)
+        private async void OnLoginButtonCliked(object? sender, EventArgs e)
         {
-            if (this.dataForm != null && App.Current?.MainPage != null)
+            if (this.dataForm != null)
             {
                 if (this.dataForm.Validate())
                 {
-                    await App.Current.MainPage.DisplayAlert("", "Signed in successfully", "OK");
+                    await DisplayAlert("", "Signed in successfully", "OK");
                 }
                 else
                 {
-                    await App.Current.MainPage.DisplayAlert("", "Please enter the required details", "OK");
+                    await DisplayAlert("", "Please enter the required details", "OK");
                 }
             }
         }
@@ -81,6 +81,19 @@
             {
                 this.dataForm.GenerateDataFormItem -= this.OnGenerateDataFormItem;
             }
+        }
+
+        /// <summary>
+        /// Displays an alert dialog to the user.
+        /// </summary>
+        /// <param name="title">The title of the alert dialog.</param>
+        /// <param name="message">The message to display.</param>
+        /// <param name="cancel">The text for the cancel button.</param>
+        /// <returns>A task representing the asynchronous alert display operation.</returns>
+        private Task DisplayAlert(string title, string message, string cancel)
+        {
+            return App.Current?.Windows?[0]?.Page!.DisplayAlert(title, message, cancel)
+                   ?? Task.FromResult(false);
         }
     }
 }
